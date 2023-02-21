@@ -1,0 +1,38 @@
+# Libraries 
+import numpy as np
+import pandas as pd
+from pandas import DataFrame, Series
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import OneHotEncoder
+from imblearn.over_sampling import SMOTE
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import cohen_kappa_score
+from xgboost import XGBClassifier
+
+from google.colab import drive
+drive.mount('/content/drive')
+df = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/最終課題/database/combined.csv')
+
+pd.set_option('display.max_columns',None)
+def with_per(total, axis):
+    for p in axis.patches:
+        percentage = '{:.1f}%'.format(100 * p.get_height()/total)
+        x = p.get_x() + p.get_width()
+        y = p.get_height()
+        ax.annotate(percentage, (x, y),ha='center')
+        
+
+# extract the categorical variable 数字でない文字の情報
+cat_var = [ feature for feature in df.columns if df[feature].dtypes=='O']
+print('List of categorical variables {}'.format(cat_var))
+#Extract the numerical features from the dataset 数字の情報
+num_var = [feature for feature in df.columns if df[feature].dtypes != 'O']
+print('List of Numerical featues {}'.format(num_var))
+
