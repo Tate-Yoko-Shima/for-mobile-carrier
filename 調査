@@ -29,10 +29,3 @@ for i in categ_nominal:
     df = pd.concat([df, pd.get_dummies(df[i], prefix=i, dummy_na=True)], sort=False, axis=1)
 df = df.drop(categ_nominal, axis=1)
 df.info()
-
-from sklearn.model_selection import train_test_split
-import lightgbm as lgb
-X = df.drop('churn',axis=1) 
-y = df['churn'] # 目的変数
-# トレーニングデータ,テストデータの分割
-X_train, X_valid, y_train, y_valid = train_test_split(X, y,test_size=0.2, random_state=0)
